@@ -61,16 +61,19 @@ body {
 .listing-card {
     border: none !important;
     margin-bottom: 2rem;
+    width: 100%;
+    border-radius: 1rem;
 }
 
 .card-img-top {
+    width: 100%;
+    height: 18rem !important;
+    object-fit: cover;
     border-radius: 1rem !important;
-    width: 100% !important;
-    object-fit: cover !important;
 }
 
 .card-body {
-    padding: 0 !important;
+    padding: 15px !important;
 
 }
 
@@ -105,17 +108,26 @@ body {
 }
 
 /* Show page */
-.show-img {
-    height: 30vh;
-}
-
 .btns {
     display: flex;
 }
 
 .show-card {
-    padding-left: 0;
-    padding-right: 0;
+    border: none !important;
+    overflow: hidden;
+}
+
+.show-img {
+    width: 100%;
+    height: 35vh !important;
+    object-fit: cover;
+    border-radius: 1rem 1rem 0 0;
+    margin-bottom: 0;
+}
+
+.show-card .card-body {
+    margin-top: 0 !important;
+    padding: 1rem 0.5rem !important;
 }
 
 /* Edit image */
