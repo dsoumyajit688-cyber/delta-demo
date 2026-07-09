@@ -68,12 +68,12 @@ body {
 .card-img-top {
     width: 100%;
     height: 18rem !important;
-    object-fit: cover;
+    object-fit: cover !important;
     border-radius: 1rem !important;
 }
 
-.card-body {
-    padding: 15px !important;
+.listing-card .card-body {
+    padding: 0 !important;
 
 }
 
@@ -121,13 +121,12 @@ body {
     width: 100%;
     height: 35vh !important;
     object-fit: cover;
-    border-radius: 1rem 1rem 0 0;
-    margin-bottom: 0;
+    border-radius: 1rem ;
+    margin-bottom: 0 !important;
 }
 
-.show-card .card-body {
-    margin-top: 0 !important;
-    padding: 1rem 0.5rem !important;
+.show-card .card-body{
+    padding: 0 !important;
 }
 
 /* Edit image */
@@ -136,6 +135,10 @@ body {
     height: 180px;
     object-fit: cover;
     border-radius: 1rem;
+}
+
+.review-card .card-body {
+    padding: 1.25rem;
 }
 
 /* map */
