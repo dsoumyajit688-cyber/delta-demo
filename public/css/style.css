@@ -69,7 +69,7 @@ body {
 
 .card-img-top {
     width: 100%;
-    height: 18rem !important;
+    height: 16rem !important;
     object-fit: cover !important;
     border-radius: 1rem !important;
 }
@@ -149,4 +149,10 @@ body {
 #map {
     height: 350px;
     width: 100%;
+}
+
+/* wishlist */
+.nav-link .fa-heart {
+    color: #fe424d;
+    margin-right: 5px;
 }

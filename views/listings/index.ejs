@@ -129,27 +129,38 @@
                 </div>
             </div>
         </div>
-        <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3">
-            <% for(let listing of listings){ %>
-                <div class="col">
-                    <a href="/listings/<%= listing._id %>" class="listing-link">
-                        <div class="card listing-card">
-                            <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image">
-                            <div class="card-img-overlay"></div>
-                            <div class="card-body">
-                                <p class="card-text">
-                                    <b>
-                                        <%= listing.title %>
-                                    </b><br>
-                                    &#8377; <%= listing.price.toLocaleString("en-IN") %> / night
-                                        <span class="tax-info">&nbsp;&nbsp;+18% GST</span>
-                                </p>
-                            </div>
+        <% if(listings.length===0){ %>
+
+            <div class="alert alert-warning mt-4 text-center">
+
+                <h4>No listings found</h4>
+
+                <p>Try searching another location.</p>
+
+            </div>
+
+            <% } %>
+                <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3">
+                    <% for(let listing of listings){ %>
+                        <div class="col">
+                            <a href="/listings/<%= listing._id %>" class="listing-link">
+                                <div class="card listing-card">
+                                    <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image">
+                                    <div class="card-img-overlay"></div>
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            <b>
+                                                <%= listing.title %>
+                                            </b><br>
+                                            &#8377; <%= listing.price.toLocaleString("en-IN") %> / night
+                                                <span class="tax-info">&nbsp;&nbsp;+18% GST</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </a>
+                        <% } %>
                 </div>
-                <% } %>
-        </div>
     </div>
     <script>
         const taxSwitch = document.getElementById("switchCheckDefault");

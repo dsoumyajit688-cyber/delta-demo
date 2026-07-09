@@ -1,24 +1,56 @@
 <style>
-    .search-btn {
-        background-color: #fe424d;
-        color: #fff;
-        border-radius: 25px;
-        padding: 0 1rem 0 1rem;
+    .search-form {
+        display: flex;
+        align-items: center;
+        gap: 12px;
     }
 
-    .search-btn:hover {
-        background-color: #fe424d;
-        color: #fff;
-    }
-
-    .search-btn i {
-        display: inline;
-        margin-right: 0.5rem;
+    .search-box {
+        position: relative;
     }
 
     .search-inp {
-        border-radius: 25px;
-        padding: 0.5rem 3rem 0.5rem 3rem;
+        width: 340px;
+        height: 50px;
+        border-radius: 30px;
+        padding: 0 45px 0 20px;
+        border: 1px solid #ddd;
+    }
+
+    .search-inp:focus {
+        border-color: #fe424d;
+        box-shadow: 0 0 0 0.15rem rgba(254, 66, 77, .25);
+    }
+
+    .clear-icon {
+        position: absolute;
+        top: 50%;
+        right: 18px;
+        transform: translateY(-50%);
+        color: #777;
+        text-decoration: none;
+        font-size: 18px;
+    }
+
+    .clear-icon:hover {
+        color: #fe424d;
+    }
+
+    .search-btn {
+        background: #fe424d;
+        color: #fff;
+        border: none;
+        border-radius: 30px;
+        height: 50px;
+        padding: 0 22px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .search-btn:hover {
+        background: #e63946;
+        color: #fff;
     }
 </style>
 
@@ -33,21 +65,52 @@
                 <a class="nav-link" href="/listings">Explore</a>
             </div>
             <div class="navbar-nav ms-auto">
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2 search-inp" type="search" placeholder="Search destination" />
-                    <button class="btn search-btn" type="submit"><i
-                            class="fa-solid fa-magnifying-glass"></i>Search</button>
+
+                <form class="search-form" action="/listings" method="GET">
+
+                    <div class="search-box">
+
+                        <input type="search" name="search" class="form-control search-inp"
+                            placeholder="Search destination" value="<%= search %>">
+
+                        <% if(search){ %>
+                            <a href="/listings" class="clear-icon">
+                                <i class="fa-solid fa-xmark"></i>
+                            </a>
+                            <% } %>
+
+                    </div>
+
+                    <button class="btn search-btn" type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <span>Search</span>
+                    </button>
+
                 </form>
+
             </div>
             <div class="navbar-nav ms-auto">
                 <a class="nav-link" href="/listings/new">Airbnb your home</a>
-                <% if(!currUser){ %>
-                    <a class="nav-link" href="/signup"><b>Sign up</b></a>
-                    <a class="nav-link" href="/login"><b>Log in</b></a>
-                    <% } %>
-                        <% if(currUser){ %>
-                            <a class="nav-link" href="/logout"><b>Log out</b></a>
-                            <% } %>
+
+                <% if(currUser){ %>
+                    <a class="nav-link" href="/wishlist">
+                        <i class="fa-regular fa-heart"></i> Wishlist
+                    </a>
+
+                    <a class="nav-link" href="/logout">
+                        <b>Log out</b>
+                    </a>
+                    <% } else { %>
+
+                        <a class="nav-link" href="/signup">
+                            <b>Sign up</b>
+                        </a>
+
+                        <a class="nav-link" href="/login">
+                            <b>Log in</b>
+                        </a>
+
+                        <% } %>
             </div>
         </div>
     </div>

@@ -15,6 +15,7 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
+const wishlistRouter=require("./routes/wishlist");
 
 const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
@@ -40,7 +41,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 const store = MongoStore.create({
     mongoUrl: process.env.ATLASDB_URL,
     crypto: {
-        secret: "mysupersecretcode",
+        secret: process.env.SECRET,
     },
     touchAfter: 24 * 3600,
 });
@@ -51,7 +52,7 @@ store.on("error", () => {
 
 const sessionOptions = {
     store,
-    secret: "mysupersecretcode",
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -75,12 +76,14 @@ app.use((req, res, next) => {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     res.locals.currUser = req.user;
+    res.locals.search = req.query.search || "";
     next();
 });
 
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", UserRouter);
+app.use("/wishlist",wishlistRouter);
 
 app.all("/*splat", (req, res, next) => {
     next(new ExpressError(404, "Page not found!"));
