@@ -1,42 +1,25 @@
 <% layout("./layouts/boilerplate") %>
 
     <h3 class="mb-4 mt-3">My Wishlist</h3>
-
     <div class="row">
-
         <% for(let listing of listings){ %>
-
             <div class="col-md-4 mb-4">
-
                 <a href="/listings/<%= listing._id %>" class="listing-link">
-
                     <div class="card listing-card">
-
                         <img src="<%= listing.image.url %>" class="card-img-top">
-
                         <div class="card-body">
-
                             <h5>
                                 <%= listing.title %>
                             </h5>
-
                             <p>₹ <%= listing.price.toLocaleString("en-IN") %> / night</p>
-
-                            <!-- Remove Button -->
                             <form action="/wishlist/<%= listing._id %>?_method=DELETE" method="POST">
                                 <button class="btn btn-danger btn-sm">
                                     Remove
                                 </button>
                             </form>
-
                         </div>
-
                     </div>
-
                 </a>
-
             </div>
-
             <% } %>
-
     </div>

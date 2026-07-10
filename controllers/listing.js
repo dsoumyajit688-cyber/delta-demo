@@ -1,55 +1,41 @@
 const Listing = require("../models/listing.js");
 const getGeometry = require("../utils/geocode.js");
 
-// module.exports.index = async (req, res) => {
-//     const listings = await Listing.find();
-//     res.render("./listings/index.ejs", { listings });
-// };
-
 module.exports.index = async (req, res) => {
-
-    let search = req.query.search;
-
-    let allListings;
-
+    let { search, category } = req.query;
+    let filter = {};
     if (search) {
-
-        allListings = await Listing.find({
-            $or: [
-                {
-                    title: {
-                        $regex: search,
-                        $options: "i"
-                    }
+        filter.$or = [
+            {
+                title: {
+                    $regex: search,
+                    $options: "i",
                 },
-                {
-                    location: {
-                        $regex: search,
-                        $options: "i"
-                    }
+            },
+            {
+                location: {
+                    $regex: search,
+                    $options: "i",
                 },
-                {
-                    country: {
-                        $regex: search,
-                        $options: "i"
-                    }
-                }
-            ]
-        });
-
-    } else {
-
-        allListings = await Listing.find({});
-
+            },
+            {
+                country: {
+                    $regex: search,
+                    $options: "i",
+                },
+            },
+        ];
     }
-
+    if (category) {
+        filter.category = category;
+    }
+    const allListings = await Listing.find(filter);
     res.render("listings/index", {
         listings: allListings,
-        search
+        search,
+        category,
     });
-
 };
-
 module.exports.renderNewForm = (req, res) => {
     res.render("./listings/new.ejs")
 };

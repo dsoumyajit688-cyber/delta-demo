@@ -1,4 +1,4 @@
-const joi = require('joi');
+const joi = require("joi");
 
 const listingSchema = joi.object({
     listing: joi.object({
@@ -7,6 +7,19 @@ const listingSchema = joi.object({
         location: joi.string().required(),
         country: joi.string().required(),
         price: joi.number().required().min(0),
+        category: joi.string().valid(
+            "Trending",
+            "Rooms",
+            "Iconic Cities",
+            "Mountains",
+            "Castles",
+            "Amazing pools",
+            "Camping",
+            "Farms",
+            "Arctic",
+            "Domes",
+            "Boats"
+        ).required(),
         image: joi.string().allow("", null),
     }).required(),
 });

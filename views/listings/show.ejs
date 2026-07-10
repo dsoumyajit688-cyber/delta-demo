@@ -34,32 +34,24 @@
         </div>
         <div class="col-lg-6 offset-lg-3 mt-3 mb-3">
             <div class="d-flex gap-2">
-
                 <% if(currUser && currUser._id.equals(listing.owner._id)) { %>
-
                     <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark edit-btn">
                         Edit
                     </a>
-
                     <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
                         <button class="btn btn-dark">
                             Delete
                         </button>
                     </form>
-
                     <% } %>
-
                         <% if(currUser){ %>
-
                             <form action="/wishlist/<%= listing._id %>" method="POST">
                                 <button class="btn btn-outline-danger">
                                     <i class="fa-regular fa-heart"></i>
                                     Add to Wishlist
                                 </button>
                             </form>
-
                             <% } %>
-
             </div>
         </div>
         <div class="col-lg-6 offset-lg-3 mb-3">

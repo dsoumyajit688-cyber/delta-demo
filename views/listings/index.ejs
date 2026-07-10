@@ -22,15 +22,29 @@
             display: none;
         }
 
+        #filters a {
+            text-decoration: none;
+            color: black;
+        }
+
         .filter {
-            flex: 0 0 auto;
-            margin-right: 2rem;
+
+            opacity: .7;
             text-align: center;
-            opacity: 0.7;
+            margin-right: 2rem;
+            transition: .3s;
         }
 
         .filter:hover {
+
             opacity: 1;
+        }
+
+        .active-filter {
+
+            opacity: 1;
+            border-bottom: 2px solid black;
+            padding-bottom: 8px;
         }
 
         .filter p {
@@ -75,50 +89,73 @@
     <div class="container-fluid px-4">
         <div class="filter-container">
             <div id="filters">
-                <div class="filter">
-                    <i class="fa-solid fa-fire"></i>
-                    <p>Trending</p>
-                </div>
-                <div class="filter">
-                    <i class="fa-solid fa-bed"></i>
-                    <p>Rooms</p>
-                </div>
-                <div class="filter">
-                    <i class="fa-solid fa-city"></i>
-                    <p>Iconic cities</p>
-                </div>
-                <div class="filter">
-                    <i class="fa-solid fa-mountain"></i>
-                    <p>Mountains</p>
-                </div>
-                <div class="filter">
-                    <i class="fa-solid fa-chess-rook"></i>
-                    <p>Castles</p>
-                </div>
-                <div class="filter">
-                    <i class="fa-solid fa-person-swimming"></i>
-                    <p>Amazing pools</p>
-                </div>
-                <div class="filter">
-                    <i class="fa-solid fa-campground"></i>
-                    <p>Camping</p>
-                </div>
-                <div class="filter">
-                    <i class="fa-solid fa-cow"></i>
-                    <p>Farms</p>
-                </div>
-                <div class="filter">
-                    <i class="fa-regular fa-snowflake"></i>
-                    <p>Arctic</p>
-                </div>
-                <div class="filter">
-                    <i class="fa-solid fa-igloo"></i>
-                    <p>Domes</p>
-                </div>
-                <div class="filter">
-                    <i class="fa-solid fa-sailboat"></i>
-                    <p>Boats</p>
-                </div>
+                <a href="/listings?category=Trending">
+                    <div class="filter <%= category==='Trending' ? 'active-filter' : '' %>">
+                        <i class="fa-solid fa-fire"></i>
+                        <p>Trending</p>
+                    </div>
+                </a>
+                <a href="/listings?category=Rooms">
+                    <div class="filter <%= category==='Rooms' ? 'active-filter' : '' %>">
+                        <i class="fa-solid fa-bed"></i>
+                        <p>Rooms</p>
+                    </div>
+                </a>
+                <a href="/listings?category=Iconic Cities">
+                    <div class="filter <%= category==='Iconic Cities' ? 'active-filter' : '' %>">
+                        <i class="fa-solid fa-city"></i>
+                        <p>Iconic cities</p>
+                    </div>
+                </a>
+                <a href="/listings?category=Mountains">
+                    <div class="filter <%= category==='Mountains' ? 'active-filter' : '' %>">
+                        <i class="fa-solid fa-mountain"></i>
+                        <p>Mountains</p>
+                    </div>
+                </a>
+                <a href="/listings?category=Castles">
+                    <div class="filter <%= category==='Castles' ? 'active-filter' : '' %>">
+                        <i class="fa-solid fa-chess-rook"></i>
+                        <p>Castles</p>
+                    </div>
+                </a>
+                <a href="/listings?category=Amazing Pools">
+                    <div class="filter <%= category==='Amazing Pools' ? 'active-filter' : '' %>">
+                        <i class="fa-solid fa-person-swimming"></i>
+                        <p>Amazing pools</p>
+                    </div>
+                </a>
+                <a href="/listings?category=Camping">
+                    <div class="filter <%= category==='Camping' ? 'active-filter' : '' %>">
+                        <i class="fa-solid fa-campground"></i>
+                        <p>Camping</p>
+                    </div>
+                </a>
+                <a href="/listings?category=Farms">
+
+                    <div class="filter <%= category==='Farms' ? 'active-filter' : '' %>">
+                        <i class="fa-solid fa-cow"></i>
+                        <p>Farms</p>
+                    </div>
+                </a>
+                <a href="/listings?category=Arctic">
+                    <div class="filter <%= category==='Arctic' ? 'active-filter' : '' %>">
+                        <i class="fa-regular fa-snowflake"></i>
+                        <p>Arctic</p>
+                    </div>
+                </a>
+                <a href="/listings?category=Domes">
+                    <div class="filter <%= category==='Domes' ? 'active-filter' : '' %>">
+                        <i class="fa-solid fa-igloo"></i>
+                        <p>Domes</p>
+                    </div>
+                </a>
+                <a href="/listings?category=Boats">
+                    <div class="filter <%= category==='Boats' ? 'active-filter' : '' %>">
+                        <i class="fa-solid fa-sailboat"></i>
+                        <p>Boats</p>
+                    </div>
+                </a>
             </div>
             <div class="tax-toggle">
                 <label class="form-check-label me-2" for="switchCheckDefault">
@@ -130,15 +167,10 @@
             </div>
         </div>
         <% if(listings.length===0){ %>
-
             <div class="alert alert-warning mt-4 text-center">
-
                 <h4>No listings found</h4>
-
                 <p>Try searching another location.</p>
-
             </div>
-
             <% } %>
                 <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4 mt-3">
                     <% for(let listing of listings){ %>

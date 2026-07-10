@@ -85,7 +85,7 @@ app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", UserRouter);
 app.use("/wishlist",wishlistRouter);
 
-app.all("/*splat", (req, res, next) => {
+app.all("/*split", (req, res, next) => {
     next(new ExpressError(404, "Page not found!"));
 });
 
